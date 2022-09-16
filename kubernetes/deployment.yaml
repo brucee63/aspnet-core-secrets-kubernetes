@@ -11,9 +11,9 @@ spec:
     spec:
       containers:
       - name: aspnet-core-secrets-demo
-        image: anthonychu/aspnet-core-secrets:latest
+        image: imagerepo/aspnet-core-secrets:latest
         ports:
-        - containerPort: 80
+        - containerPort: 5015
         env:
         - name: "ASPNETCORE_ENVIRONMENT"
           value: "Kubernetes"
@@ -21,7 +21,13 @@ spec:
         - name: secrets
           mountPath: /app/secrets
           readOnly: true
+        - name: config-volume
+          mountPath: /app
+          readOnly: true
       volumes:
       - name: secrets
         secret:
           secretName: secret-appsettings
+      - name: config-volume
+        configMap:
+          name: config-appsettings

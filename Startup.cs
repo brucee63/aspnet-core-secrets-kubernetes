@@ -15,10 +15,11 @@ namespace aspnet_core_secrets
         }
         public static IConfigurationRoot Configuration { get; set; }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.common.json", optional: true, reloadOnChange: true)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddJsonFile("secrets/appsettings.secrets.json", optional: true, reloadOnChange: true)
@@ -26,7 +27,7 @@ namespace aspnet_core_secrets
 
             Configuration = builder.Build();
 
-            loggerFactory.AddConsole();
+            //loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
             {
@@ -37,7 +38,9 @@ namespace aspnet_core_secrets
             {
                 var message = $"Host: {Environment.MachineName}\n" +
                     $"EnvironmentName: {env.EnvironmentName}\n" +
-                    $"Secret value: {Configuration["Database:ConnectionString"]}";
+                    $"FromEmail value (env specific): {Configuration["Email:FromAddress"]}\n" +
+                    $"ConnectionString value: {Configuration["Database:ConnectionString"]}\n" +
+                    $"Common/Static Cache value: {Configuration["Cache:ConnectionString"]}";
                 await context.Response.WriteAsync(message);
             });
         }

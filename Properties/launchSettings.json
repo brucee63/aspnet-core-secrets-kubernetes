@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "aspnet-core-secrets": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "development" //local, developement, sandbox, production
+      },
+      "applicationUrl": "http://localhost:5015"
+    }
+  }
+}
