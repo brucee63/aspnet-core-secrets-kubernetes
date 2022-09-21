@@ -4,10 +4,12 @@
       image: aspnet-core-secrets:latest
       ports:
         - "5015:5015"
+      environment:
+        - ASPNETCORE_ENVIRONMENT=production
       volumes:
         - type: bind
-          source: ../kubernetes/appsettings.secrets.json
+          source: ./kubernetes/kustomize/overlays/production/config/appsettings.secrets.json
           target: /app/secrets/appsettings.secrets.json
         - type: bind
-          source: ../kubernetes/appsettings.common.json
+          source: ./kubernetes/kustomize/base/config/appsettings.common.json
           target: /app/appsettings.common.json
