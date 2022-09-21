@@ -1,0 +1,11 @@
+﻿resources:
+ - namespace.yaml
+ - deployment.yaml
+ - service.yaml
+
+configMapGenerator:
+- name: config-appsettings
+  namespace: example
+  behavior: create
+  files:
+    - config/appsettings.common.json

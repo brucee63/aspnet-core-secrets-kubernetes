@@ -1,0 +1,22 @@
+﻿bases:
+  - ../../base
+
+patches:
+  - path: env.yaml
+    target:
+      group: extensions
+      version: v1beta1
+      kind: Deployment
+      name: aspnet-core-secrets-demo-deploy
+
+secretGenerator:
+- name: secret-appsettings
+  namespace: example
+  #behavior: replace
+  files:
+    - config/appsettings.secrets.json
+
+images:
+- name: fakerepo/aspnet-core-secrets
+  newname: fakerepo/aspnet-core-secrets
+  newtag: 1.0.3

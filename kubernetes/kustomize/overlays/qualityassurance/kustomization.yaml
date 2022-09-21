@@ -1,0 +1,14 @@
+﻿bases:
+  - ../../base
+
+patches:
+  - path: env.yaml
+    target:
+      group: extensions
+      version: v1beta1
+      kind: Deployment
+      name: aspnet-core-secrets-demo-deploy
+
+images:
+- name: aspnet-core-secrets
+  newTag: 1.0.1
