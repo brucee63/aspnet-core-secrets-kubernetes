@@ -18,5 +18,4 @@ secretGenerator:
 
 images:
 - name: fakerepo/aspnet-core-secrets
-  newname: fakerepo/aspnet-core-secrets
-  newtag: 1.0.3
+  newtag: 1.0.2

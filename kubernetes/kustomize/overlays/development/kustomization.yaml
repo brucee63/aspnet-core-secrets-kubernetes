@@ -11,3 +11,7 @@ patches:
       version: v1beta1
       kind: Deployment
       name: aspnet-core-secrets-demo-deploy
+
+images:
+- name: fakerepo/aspnet-core-secrets
+  newtag: latest

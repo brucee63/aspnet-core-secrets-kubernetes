@@ -11,4 +11,4 @@ patches:
 
 images:
 - name: aspnet-core-secrets
-  newTag: 1.0.1
+  newTag: 1.0.2
